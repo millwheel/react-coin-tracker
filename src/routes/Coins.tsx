@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
@@ -79,6 +80,11 @@ function Coins() {
   // }, []);
   return (
     <Container>
+      <Helmet>
+        <title>
+          Coins
+        </title>
+      </Helmet>
       <Header>
         <Title>coins</Title>
       </Header>
