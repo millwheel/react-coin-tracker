@@ -17,7 +17,7 @@ function Router({ isDarkMode, toggleDarkMode }: IHome) {
             isDarkMode={isDarkMode}
             toggleDarkMode={toggleDarkMode}
           ></Toggle>
-          <Coin></Coin>
+          <Coin isDarkMode={isDarkMode}></Coin>
         </Route>
         <Route path="/">
           <Toggle
