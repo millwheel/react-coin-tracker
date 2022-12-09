@@ -16,7 +16,8 @@ const Button = styled.button`
   div {
     padding: 5px;
     span {
-      font-size: 25px;
+      margin-left: 5px;
+      font-size: 20px;
     }
   }
 `;
@@ -31,12 +32,12 @@ function Toggle({ isDarkMode, toggleDarkMode }: IToggle) {
     <Button onClick={toggleDarkMode}>
       {isDarkMode === true ? (
         <div>
-          <FontAwesomeIcon icon={faSun} size="3x" />
+          <FontAwesomeIcon icon={faSun} size="2x" />
           <span>Light mode</span>
         </div>
       ) : (
         <div>
-          <FontAwesomeIcon icon={faMoon} size="3x" />
+          <FontAwesomeIcon icon={faMoon} size="2x" />
           <span>Dark mode</span>
         </div>
       )}
