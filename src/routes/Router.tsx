@@ -1,26 +1,29 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Coin from "./Coin";
 import Coins from "./Coins";
-import styled from "styled-components";
-import { useState } from "react";
+import Toggle from "./Toggle";
 
 interface IHome {
+  isDarkMode: boolean;
   toggleDarkMode: () => void;
 }
 
-const Button = styled.button`
-  
-`;
-
-function Router({ toggleDarkMode }: IHome) {
+function Router({ isDarkMode, toggleDarkMode }: IHome) {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/:coinId">
+          <Toggle
+            isDarkMode={isDarkMode}
+            toggleDarkMode={toggleDarkMode}
+          ></Toggle>
           <Coin></Coin>
         </Route>
         <Route path="/">
-          <Button onClick={toggleDarkMode}>테마 변경</Button>
+          <Toggle
+            isDarkMode={isDarkMode}
+            toggleDarkMode={toggleDarkMode}
+          ></Toggle>
           <Coins></Coins>
         </Route>
       </Switch>
