@@ -27,50 +27,35 @@ function Chart({ coinId }: CharProps) {
         "Loading..."
       ) : (
         <ApexChart
-          type="line"
+          type="candlestick"
           series={[
             {
-              name: "Price",
-              data: data?.map((price) => Number(price.close)) ?? [],
+              // data: data?.map((price) => price.close) as number[],
+              data: data?.map((price) => {
+                return [
+                  new Date(price.time_open).valueOf() * 1000,
+                  price.open,
+                  price.high,
+                  price.low,
+                  price.close,
+                ];
+              }) as [],
             },
           ]}
           options={
             {
-              theme: {
-                mode: "dark",
-              },
-              chart: {
-                height: 500,
-                width: 500,
-                toolbar: {
-                  show: false,
+              chart:{
+                height:500,
+                width:500,
+                toolbar:{
+                  show:false,
                 },
                 background: "transparent",
               },
-              yaxis: {
-                show: false,
-              },
-              xaxis: {
-                axisTicks: { show: false },
+
+              xaxis:{
+                type:"datetime",
                 labels: { show: false },
-                categories: data?.map((price) => price.time_close),
-              },
-              stroke: {
-                curve: "smooth",
-              },
-              fill: {
-                type: "gradient",
-                gradient: {
-                  type: "vertical",
-                  gradientToColors: ["red"],
-                  stops: [0, 100],
-                },
-              },
-              colors: ["blue"],
-              tooltip: {
-                y: {
-                  formatter: (value) => `${value.toFixed(3)}`,
-                },
               },
             }
           }

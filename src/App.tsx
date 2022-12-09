@@ -79,7 +79,7 @@ function App(): JSX.Element {
       <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
         <GlobalStyle />
         <Router isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>
-        <ReactQueryDevtools initialIsOpen={true} />
+        {/* <ReactQueryDevtools initialIsOpen={true} /> */}
       </ThemeProvider>
     </>
   );
