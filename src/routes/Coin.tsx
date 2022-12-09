@@ -161,9 +161,9 @@ function Coin() {
   const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
     ["ticker", coinId],
     () => fetchCoinTickers(coinId),
-    {
-      refetchInterval: 5000,
-    }
+    // {
+    //   refetchInterval: 5000,
+    // }
   );
   // const [loading, setLoading] = useState(true);
   // const [info, setInfo] = useState<InfoData>();
@@ -237,7 +237,7 @@ function Coin() {
           </Tabs>
           <Switch>
             <Route path={`/:coinId/price`}>
-              <Price />
+              <Price coinId={coinId}/>
             </Route>
             <Route path={`/:coinId/chart`}>
               <Chart coinId={coinId} />
