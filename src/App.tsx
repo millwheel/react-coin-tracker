@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 import Router from "./routes/Router";
-import { ReactQueryDevtools} from "react-query/devtools";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./theme";
+import { useState } from "react";
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -57,8 +60,8 @@ table {
 
 body{
   font-family: 'Source Sans Pro', sans-serif;
-  background-color: ${props => props.theme.bgColor};
-  color:${props => props.theme.textColor}
+  background-color: ${(props) => props.theme.bgColor};
+  color:${(props) => props.theme.textColor}
 }
 a{
   text-decoration: none;
@@ -66,12 +69,18 @@ a{
 }
 `;
 
-function App() {
+function App(): JSX.Element {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev) => !prev);
+  };
   return (
     <>
-      <GlobalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+        <GlobalStyle />
+        <Router toggleDarkMode={toggleDarkMode}/>
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 }

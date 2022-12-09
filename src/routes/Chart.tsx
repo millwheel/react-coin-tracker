@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { fetchCoinHistory } from "./api";
 import ApexChart from "react-apexcharts";
-import Price from './Price';
+import Price from "./Price";
 
 interface IHistorical {
   time_open: string;
@@ -32,47 +32,49 @@ function Chart({ coinId }: CharProps) {
           series={[
             {
               name: "Price",
-              data: data?.map((price) => price.close) as number[],
+              data: data?.map((price) => Number(price.close)) ?? [],
             },
           ]}
-          options={{
-            theme: {
-              mode: "dark",
-            },
-            chart: {
-              height: 500,
-              width: 500,
-              toolbar: {
+          options={
+            {
+              theme: {
+                mode: "dark",
+              },
+              chart: {
+                height: 500,
+                width: 500,
+                toolbar: {
+                  show: false,
+                },
+                background: "transparent",
+              },
+              yaxis: {
                 show: false,
               },
-              background: "transparent",
-            },
-            yaxis: {
-              show: false,
-            },
-            xaxis: {
-              axisTicks: { show: false },
-              labels: { show: false },
-              categories: data?.map((price) => price.time_close)
-            },
-            stroke: {
-              curve: "smooth",
-            },
-            fill: {
-              type: "gradient",
-              gradient: {
-                type:"vertical",
-                gradientToColors: ["red"],
-                stops: [0, 100],
+              xaxis: {
+                axisTicks: { show: false },
+                labels: { show: false },
+                categories: data?.map((price) => price.time_close),
               },
-            },
-            colors: ["blue"],
-            tooltip:{
-                y:{
-                    formatter:(value) => `${value.toFixed(3)}`,
-                }
+              stroke: {
+                curve: "smooth",
+              },
+              fill: {
+                type: "gradient",
+                gradient: {
+                  type: "vertical",
+                  gradientToColors: ["red"],
+                  stops: [0, 100],
+                },
+              },
+              colors: ["blue"],
+              tooltip: {
+                y: {
+                  formatter: (value) => `${value.toFixed(3)}`,
+                },
+              },
             }
-          }}
+          }
         />
       )}
     </div>

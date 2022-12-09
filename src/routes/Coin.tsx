@@ -13,6 +13,8 @@ import Price from "./Price";
 import Chart from "./Chart";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "./api";
+import { faArrowAltCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -22,13 +24,14 @@ const Container = styled.div`
 
 const Header = styled.header`
   height: 15vh;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
 `;
+
 const Title = styled.h1`
   font-size: 48px;
-  color: ${(props) => props.theme.accentColor};
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Loader = styled.span`
@@ -188,6 +191,9 @@ function Coin() {
         </title>
       </Helmet>
       <Header>
+        <Link to="/">
+          <FontAwesomeIcon icon={faArrowAltCircleLeft} size="2x" />
+        </Link>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
