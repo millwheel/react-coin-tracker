@@ -8,7 +8,6 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import Price from "./Price";
 import Chart from "./Chart";
 import { useQuery } from "react-query";
@@ -30,6 +29,7 @@ const Header = styled.header`
 `;
 
 const Title = styled.h1`
+  font-family: "Georgia";
   font-size: 48px;
   color: ${(props) => props.theme.textColor};
 `;
@@ -160,7 +160,7 @@ function Coin() {
   );
   const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
     ["ticker", coinId],
-    () => fetchCoinTickers(coinId),
+    () => fetchCoinTickers(coinId)
     // {
     //   refetchInterval: 5000,
     // }
@@ -237,7 +237,7 @@ function Coin() {
           </Tabs>
           <Switch>
             <Route path={`/:coinId/price`}>
-              <Price coinId={coinId}/>
+              <Price coinId={coinId} />
             </Route>
             <Route path={`/:coinId/chart`}>
               <Chart coinId={coinId} />

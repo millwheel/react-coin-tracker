@@ -1,10 +1,8 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { fetchCoins } from "./api";
-
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -42,6 +40,7 @@ const Coin = styled.li`
 `;
 
 const Title = styled.h1`
+  font-family: "Georgia";
   font-size: 48px;
   color: ${(props) => props.theme.textColor};
 `;
@@ -85,7 +84,6 @@ function Coins() {
         <title>Coins</title>
       </Helmet>
       <Header>
-
         <Title>coins list</Title>
       </Header>
       {isLoading ? (
