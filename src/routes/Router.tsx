@@ -10,7 +10,7 @@ interface IHome {
 
 function Router({ isDarkMode, toggleDarkMode }: IHome) {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path="/:coinId">
           <Toggle
